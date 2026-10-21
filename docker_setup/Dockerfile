@@ -117,5 +117,11 @@ RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc \
  && echo 'export MESA_LOADER_DRIVER_OVERRIDE=softpipe' >> ~/.bashrc \
  && echo 'export EGL_PLATFORM=surfaceless' >> ~/.bashrc
 
+# RF explorer Node 
+# numpy<1.25: ROS Humble and apt SciPy break with NumPy 2.
+# torch CPU build: Runs the model only, no GPU acceleration.
+RUN sudo pip install pandas pyarrow "numpy<1.25" \
+ && sudo pip install torch --index-url https://download.pytorch.org/whl/cpu
+
 WORKDIR /home/$USERNAME/ros2_ws
 CMD ["/bin/bash"]

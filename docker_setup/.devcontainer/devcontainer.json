@@ -8,14 +8,17 @@
     }
   },
   "remoteUser": "ros",
-  // Mount your folder at ~/host. Mounting it over ~/ros2_ws (the original setting)
-  // hides the ArduPilot/ROS workspace that the image spent an hour building.
+  // Mounts folder at ~/host
   "workspaceFolder": "/home/ros/host",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros/host,type=bind",
   "runArgs": [
     "--platform=linux/amd64",
     "--net=host",
     "--ipc=host",
+    // Simulate Jetson Orin Nano 8GB: 8 GB RAM (no swap) and 6 CPU cores.
+    "--memory=8g", "--memory-swap=8g",
+    "--cpuset-cpus=0-5",
+    // Delete these lines above to run without the cap.
     "-e", "DISPLAY=host.docker.internal:0",
     "-e", "LIBGL_ALWAYS_SOFTWARE=1",
     "-e", "MESA_GL_VERSION_OVERRIDE=3.3",
@@ -36,5 +39,5 @@
       ]
     }
   },
-  "postCreateCommand": "cp ~/host/launch_sim.sh ~/launch_sim.sh && echo 'Dev container ready. Run: bash ~/launch_sim.sh'"
+  "postCreateCommand": "sed 's/\\r$//' ~/host/launch_sim.sh > ~/launch_sim.sh && chmod +x ~/launch_sim.sh && echo 'Dev container ready. Run: bash ~/launch_sim.sh'"
 }

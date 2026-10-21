@@ -46,5 +46,5 @@ if [[ "$GUI" == true ]]; then
   ros2 launch ardupilot_gz_bringup wildthumper_playpen.launch.py
 else
   ros2 launch ardupilot_gz_bringup wildthumper_playpen.launch.py \
-    gui:=false rviz:=false
+    use_gz_sim_gui:=false rviz:=false
 fi
