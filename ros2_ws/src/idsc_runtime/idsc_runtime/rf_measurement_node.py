@@ -9,8 +9,7 @@ class RFMeasurementNode(Node):
         super().__init__('rf_measurement')
 
         self.publisher = self.create_publisher(PointStamped, "rf/samples", 100)
-        self.timer = self.create_timer(1.0, self.publish_measurement)
-        self.sample_index = 0
+        self.timer = self.create_timer(0.001, self.publish_measurement)
 
     def publish_measurement(self):
         msg = PointStamped()
@@ -18,10 +17,15 @@ class RFMeasurementNode(Node):
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = "map"
 
-        i = self.sample_index
+        msg.point.x = random.uniform(0.0, 900.0)
+        msg.point.y = random.uniform(0.0, 900.0)
 
-        msg.point.x = float(2 + (i % 12)  * 4)
-        msg.point.y = float(2 + ((i // 12) % 12) * 4)
+        emitter_x = 450.0
+        emitter_y = 450.0
+
+        distance = math.hypot(msg.point.x - emitter_x, msg.point.y - emitter_y)
+
+        msg.point.z = (45.0 + 20.0 * math.log10(max(distance, 1.0)) + random.gauss(0.0, 2.0))
 
         self.publisher.publish(msg)
 
