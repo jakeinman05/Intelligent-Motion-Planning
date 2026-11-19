@@ -1,0 +1,3 @@
+[console_scripts]
+rf_measurement = idsc_runtime.rf_measurement_node:main
+

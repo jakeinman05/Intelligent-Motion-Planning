@@ -1,0 +1,9 @@
+source;share/idsc_runtime/hook/pythonpath.ps1
+source;share/idsc_runtime/hook/pythonpath.dsv
+source;share/idsc_runtime/hook/pythonpath.sh
+source;share/idsc_runtime/hook/ament_prefix_path.ps1
+source;share/idsc_runtime/hook/ament_prefix_path.dsv
+source;share/idsc_runtime/hook/ament_prefix_path.sh
+source;../../build/idsc_runtime/share/idsc_runtime/hook/pythonpath_develop.ps1
+source;../../build/idsc_runtime/share/idsc_runtime/hook/pythonpath_develop.dsv
+source;../../build/idsc_runtime/share/idsc_runtime/hook/pythonpath_develop.sh
