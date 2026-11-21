@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='Jake Inman',
     maintainer_email='jakeinman05@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='PPO pathplanning node',
+    license='MIT',
     extras_require={
         'test': [
             'pytest',
